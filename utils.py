@@ -41,3 +41,20 @@ def visualize_board_detection(image, corners, window_name="Board Detection", sav
         cv2.destroyAllWindows()
 
     return annotated
+
+def show_debug_image(title, image, scale=0.5, wait=True):
+    """
+    Display an image for debugging (auto-resized).
+    Args:
+        title (str): Window name.
+        image (np.ndarray): Image to display.
+        scale (float): Resize factor for large images.
+        wait (bool): Whether to wait for key press.
+    """
+    h, w = image.shape[:2]
+    resized = cv2.resize(image, (int(w * scale), int(h * scale)))
+    cv2.imshow(title, resized)
+    if wait:
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
